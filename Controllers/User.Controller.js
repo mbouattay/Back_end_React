@@ -46,6 +46,27 @@ const UserController = {
         res.json({ status: "success", message: "refresh token not found!!!", data: null});
     }
     },  
+    find :  (req,res)=>{
+        UserModel.find({},(err,items)=>{
+            if(err){
+                    console.log("error is ",err) ; 
+                    res.json(err) ;
+            }
+            res.json(items) ;
+        })
+       
+    },
+    delete : (req,res)=>{
+        UserModel.deleteOne({
+            _id:req.params.id
+        },(err,item)=>{
+            if(err){
+                console.log(err) ; 
+                res.json(err)
+            }
+            res.json(item)
+        })
+    } , 
     
 }
 module.exports=UserController ; 
